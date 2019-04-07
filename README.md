@@ -1,5 +1,5 @@
 # myintroduce
-[viewSites](http://eveningwater.com/myintroduce/vue/)
+[viewSites](http://eveningwater.com/vue-resume/)
 > A Vue.js project
 
 ## Build Setup
