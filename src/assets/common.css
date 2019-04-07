@@ -1,0 +1,64 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+*::before {
+    box-sizing: border-box;
+}
+
+*::after {
+    box-sizing: border-box;
+}
+
+.resumeEditor,
+.styleEditor {
+    overflow-y: auto;
+	overflow-x: hidden;
+	padding:.5em;
+	margin:.5em;
+}
+
+.styleEditor {
+    outline: none;
+    white-space: pre-wrap;
+    font-size: 14px;
+}
+
+.styleEditor:focus {
+    box-shadow: 0 0 30px #fff;
+}
+
+.resumeEditor a {
+    transition: color .3s linear;
+}
+
+#music {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    background: url(./musicIcon.svg)no-repeat center/cover;
+    margin-left: 15px;
+    display: none;
+}
+
+audio {
+    opacity: 0;
+}
+
+.rotate {
+    animation: rotate 5s linear infinite;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg)
+    }
+    100% {
+        transform: rotate(360deg)
+    }
+}
