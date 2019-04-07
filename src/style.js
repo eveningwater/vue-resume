@@ -15,7 +15,7 @@ body{
 * 先改变背景颜色,毕竟白色背景太单调了不是吗?
 */
 html{
-	background-color:#a0f2f5;
+	background-color:#abb1b1;
 }
 /*
 * 等待所有的字体都变成白色...
@@ -32,8 +32,8 @@ body,html{
 .styleEditor{
 	width:45%;
 	height:77vh;
-	background:#111;
-	border:1px solid #000;
+	background:#202120;
+	border:1px solid #f2f2f2;
 }
 /*
 * 编辑器写好了,但是字体颜色全是白色,
@@ -42,7 +42,7 @@ body,html{
 * 继续......
 */
 .token.comment{color:#b4b4b4;font-family:italic;}
-.token.selector{ color: #bc51eb; }
+.token.selector{ color: #de8322; }
 .token.property{ color: #a230ea; }
 .token.punctuation{ color: #29e354;}
 .token.function{ color: #de32b0;}
@@ -84,9 +84,7 @@ body,html{
 	top:0;
 	width:45%;
 	height:93vh;
-	border:1px solid #000;
-	background-color:#eee;
-	color:#e82a2a;
+	background-color:#202120;
 	transform:rotateY(10deg) translateZ(-100px);
 }
 /*
@@ -138,7 +136,7 @@ body,html{
 */
 .resumeEditor a{
 	text-decoration:none;
-    color:#535353;
+	color:#bf862d;
 }
 .resumeEditor a:hover,
 .resumeEditor a:active{
@@ -153,11 +151,11 @@ body,html{
 }
 /*
 * 当然，你还可以自己编辑样式。
-* 比如，我把编辑器的背景换下
+* 比如，我把页面的背景换下
 * 
 */
-.styleEditor{
-	background-color:#535353;
+body{
+	background-color:#f2f2f2;
 }
 /*
 * 最后,我想听首歌放松放松下.

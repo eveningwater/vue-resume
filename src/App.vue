@@ -4,7 +4,7 @@
 			<StyleEditor ref="styleEditor" v-bind.sync="currentStyle"></StyleEditor>
 			<ResumeEditor ref="resumeEditor" :markdown = "currentMarkdown" :enableHtml="enableHtml"></ResumeEditor>
 		</div>
-		<BottomNav ref ="bottomNav" @on-pause="pauseAnimation" @on-skip="skipAnimation"></BottomNav>
+		<BottomNav ref="bottomNav" @on-pause="pauseAnimation" @on-skip="skipAnimation"></BottomNav>
 	</div>
 </template>
 <script>
@@ -23,7 +23,7 @@
         },
         data() {
             return {
-                interval: 40,//写入字的速度
+                interval: 50,//写入字的速度
                 currentStyle: {
                     code: ''
                 },
@@ -59,7 +59,8 @@
 					this.$set(this.currentStyle,'code',str);
 				},100)
 				this.currentMarkdown = my;
-				this.enableHtml = true;
+                this.enableHtml = true;
+                this.$refs.styleEditor.goBottom();
 				this.$refs.bottomNav.playMusic();
 			},
             // 加载动画

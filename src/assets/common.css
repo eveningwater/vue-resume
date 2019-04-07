@@ -20,7 +20,7 @@
     overflow-y: auto;
 	overflow-x: hidden;
 	padding:.5em;
-	margin:.5em;
+    margin:.5em;
 }
 
 .styleEditor {
@@ -32,7 +32,6 @@
 .styleEditor:focus {
     box-shadow: 0 0 30px #fff;
 }
-
 .resumeEditor a {
     transition: color .3s linear;
 }

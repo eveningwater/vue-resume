@@ -1,7 +1,7 @@
 <template>
 	<div class="container">
 		<div class="code" v-html="codeInstyleTag"></div>
-		<div class="styleEditor" ref="container" contenteditable="true" @input="updateCode($event)" v-html="highlightedCode"></div>
+		<div class="styleEditor" ref="container" contenteditable="true" @blur="updateCode($event)" v-html="highlightedCode"></div>
 	</div>
 </template>
 <script>

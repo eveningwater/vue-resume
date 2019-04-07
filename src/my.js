@@ -31,5 +31,5 @@ const fullMarkdown = `* 夕水(eveningwater),
 * 完结小说(已上线)
 * [高手来都市](http://www.zhujiange.com/book/57433/index.html),虽然写的比较烂,哈哈哈哈哈!
 -----
-> 如果你喜欢这个效果的话,欢迎下载[源码](https://github.com/eveningwater/)研究。`
+> 如果你喜欢这个效果的话,欢迎下载[源码](https://github.com/eveningwater/vue-resume)研究。`
 export default fullMarkdown;
