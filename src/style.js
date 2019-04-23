@@ -5,7 +5,7 @@ const fullStyle = [`/*
 * 让我们一起来看看吧.
 */
 /* 首先给动画加上过渡效果*/
-body{
+body,html{
 	transition:all .5s;
 }
 /* 过渡效果加上了,但是你并没有看到啥,
@@ -14,7 +14,7 @@ body{
 * 过渡效果只是为了让动画更顺畅一点罢了.
 * 先改变背景颜色,毕竟白色背景太单调了不是吗?
 */
-html{
+html,html{
 	background-color:#abb1b1;
 }
 /*
@@ -154,7 +154,7 @@ body,html{
 * 比如，我把页面的背景换下
 * 
 */
-body{
+body,html{
 	background-color:#f2f2f2;
 }
 /*

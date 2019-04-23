@@ -75,27 +75,3 @@
         }
     }
 </script>
-<style scoped>
-    #bottom {
-        position: fixed;
-        bottom: 5px;
-        left: 0;
-        right: 0;
-    }
-
-    #bottom p {
-        float: right;
-    }
-
-    #bottom a {
-        text-decoration: none;
-        color: #999;
-        cursor: pointer;
-        margin-left: 5px;
-    }
-
-    #bottom a:hover,
-    #bottom a:active {
-        color: #010a11;
-    }
-</style>

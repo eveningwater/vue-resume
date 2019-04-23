@@ -1,6 +1,14 @@
 <template>
 	<div id="app">
-		<div class="main">
+        <transition name="slide">
+            <div class="header" v-if="isDown">
+                <label class="w-inter-text">写字速度:</label>
+                <input type="text" class="w-inter-input" v-model="speed" v-number placeholder="请输入1到100的整数数字">
+                <button type="button" class="w-inter-btn" @click="updateSpeed">修改速度</button>
+            </div>
+        </transition>
+        <div class="down" @click="isDown = !isDown" :style="{ top: isDown ? '50px' : '15px'}"></div>
+		<div class="main" :style="isDown ? ' height:calc(100% - 40px);' : ''">
 			<StyleEditor ref="styleEditor" v-bind.sync="currentStyle"></StyleEditor>
 			<ResumeEditor ref="resumeEditor" :markdown = "currentMarkdown" :enableHtml="enableHtml"></ResumeEditor>
 		</div>
@@ -21,9 +29,23 @@
             StyleEditor,
             BottomNav
         },
+        directives:{
+            // 只允许输入数字
+            number:{
+                inserted(el,binding,vnode){
+                    el.oninput = (e) => {
+                        if(isNaN(Number(e.target.value)) || Number(e.target.value) > 100 || Number(e.target.value) < 1){
+                            e.target.value = vnode.context.speed = '';
+                            return;
+                        }
+                    }
+                }
+            }
+        },
         data() {
             return {
                 interval: 50,//写入字的速度
+                speed:50,
                 currentStyle: {
                     code: ''
                 },
@@ -31,13 +53,20 @@
                 fullStyle: fullStyle,
                 currentMarkdown: '',
                 fullMarkdown: my,
-				timer: null
+                timer: null,
+                isDown:false
             }
         },
         created() {
             this.makeResume();
         },
+        mounted(){
+           
+        },
         methods: {
+            updateSpeed(){
+                this.interval = this.speed;
+            },
             // 暂停动画
             pauseAnimation(bool) {
                 if(bool && this.timer){
