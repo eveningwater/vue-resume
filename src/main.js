@@ -1,15 +1,11 @@
-import Vue from "vue";
-import App from "./App";
-import VueRouter from "vue-router";
-/* eslint-disable no-new */
-Vue.use(VueRouter);
-const router = new VueRouter({
-	mode:"history"
-});
+import Vue from 'vue'
+import App from './App.vue'
 
+Vue.config.productionTip = false;
+
+import { consoleInfo } from './js/console';
+consoleInfo();
 
 new Vue({
-  el: "#app",
-  router,
-  render: h => h(App)
-});
+  render: h => h(App),
+}).$mount('#app')
