@@ -1,6 +1,6 @@
 # resume
-[新版在线预览](http://eveningwater.com/vue-resume/new)
-[旧版在线预览](http://eveningwater.com/vue-resume/old)
+[新版在线预览](https://www.eveningwater.com/vue-resume/new/)
+[旧版在线预览](https://www.eveningwater.com/vue-resume/old)
 
 ## Project setup
 ```
