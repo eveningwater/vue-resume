@@ -3,7 +3,11 @@ const fullMarkdown = `* 夕水(eveningwater),
 -----
 技能
 -----
-* 熟悉前端开发
+* HTML,CSS,JS基础扎实
+* 熟悉vue.js,react.js,jQuery以及typescript以及相关的UI框架如element UI,iview等
+* 熟悉layUI,bootstrap等框架，熟悉less,sass,stylus
+* 对canvas也有接触，如three.js，echarts.js或者原生canvas等基础语法
+* 熟悉地图API如百度地图，高德地图
 * 高效的自学能力
 -----
 工作项目
@@ -21,15 +25,9 @@ const fullMarkdown = `* 夕水(eveningwater),
 11. 相关APP页面若干
 12. 领梵小程序
 13. [17素材](http://www.17sucai.com/pins/26618.html)
------
-其它爱好
------
-* 诗词(主要发表在以下网站):
-* [中国诗歌网](http://www.zgshige.com/c/2016-11-07/2029387.shtml)
-* [诗词在线](http://www.chinapoesy.com/gongxianglist894225B7-3462-42F6-8B0D-118B36FF31D8.html)
------
-* 完结小说(已上线)
-* [高手来都市](http://www.zhujiange.com/book/57433/index.html),虽然写的比较烂,哈哈哈哈哈!
+14. [案例网站](http://case.ledfin.cn/)
+15. [案例后台网站](http://case.ledfin.cn/hash/index.html)
+16. [报价后台管理系统](http://bj.ledfin.cn/)
 -----
 > 如果你喜欢这个效果的话,欢迎下载[源码](https://github.com/eveningwater/vue-resume)研究。`
 export default fullMarkdown;

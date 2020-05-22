@@ -2,14 +2,15 @@ export default {
     name: 'bottom',
     data() {
         return {
-            demourl: [{
-                url: 'http://eveningwater.com/',
-                title: '个人网站'
-            },
-            {
-                url: 'https://github.com/eveningwater',
-                title: 'github'
-            }
+            projectUrls: [
+                {
+                    url: 'https://eveningwater.com/',
+                    title: '个人网站'
+                },
+                {
+                    url: 'https://github.com/eveningwater',
+                    title: 'github'
+                }
             ],
             paused: false, //暂停
             playing: false, //播放图标动画
@@ -30,8 +31,7 @@ export default {
         },
         // 播放音乐
         playMusic() {
-            this.playing = true;
-            this.autoPlaying = true;
+            this.playing = this.autoPlaying = true;
             // 创建audio标签
             if (!this.audio) {
                 this.createAudio();
