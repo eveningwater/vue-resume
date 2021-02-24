@@ -61,21 +61,18 @@ export default {
         const audioElement = ref();
         const createAudio = () => {
             if(audioElement.value){
-                audioElement.value = null;
-            };
-            audioElement.value = new Audio();
-            audioElement.value.loop = 'loop';
-            audioElement.value.autoplay = 'autoplay';
-            audioElement.value.src = 'https://www.eveningwater.com/static/resouces/audio/5.mp3';
+                audioElement.value.load();
+            }else{
+                audioElement.value = new Audio();
+                audioElement.value.loop = 'loop';
+                audioElement.value.autoplay = 'autoplay';
+                audioElement.value.src = 'https://www.eveningwater.com/static/resouces/audio/5.mp3';
+            }
         }
         const playMusic = () => {
             state.playing = true;
             // console.log(audioElement.value)
-            if(audioElement.value){
-                audioElement.value.load();
-            }else{
-                createAudio();
-            }
+            createAudio();
             setTimeout(() => {
                 audioElement.value.play();
             },0)
