@@ -1,6 +1,6 @@
 <template>
   <AnimationSpeed  @on-update-speed="onUpdateSpeed" @on-show-header="onShowHeader" />
-  <div class="main" :style="{ height:isShowHeader ? 'calc(100% - 60px)' : 'calc(100% - 20px)'}">
+  <div class="main" :style="{ height:mainHeight }">
     <StyleEditor v-model:styleCode="styleCode" ref="styleEditor"/>
     <ResumeEditor :markdown="currentMarkdown" :showHTML="enableHtml" ref="resumeEditor" />
   </div>
@@ -36,10 +36,14 @@ export default defineComponent({
        enableHtml:false,
        interVal:50
     })
+    const isShowHeader = ref(false);
+    const mainHeight = ref('calc(100% - 20px)');
     if(navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i) || window.innerWidth < 666){
       state.fullStyle = fullMobileStyle;
+      mainHeight.value = isShowHeader.value ? 'calc(100% - 90px)' : 'calc(100% - 50px)';
     }else{
       state.fullStyle = fullStyle;
+      mainHeight.value = isShowHeader.value ? 'calc(100% - 60px)' : 'calc(100% - 20px)';
     }
     const instance = getCurrentInstance();
     const loadMobileStyle = () => {
@@ -135,7 +139,6 @@ export default defineComponent({
     const onUpdateSpeed = (speed) => {
        state.interVal = speed.value;
     }
-    const isShowHeader = ref(false);
     const onShowHeader = (bool) => {
       isShowHeader.value = bool.value;
     }
@@ -149,7 +152,8 @@ export default defineComponent({
       onPauseAnimation,
       onUpdateSpeed,
       onShowHeader,
-      isShowHeader
+      isShowHeader,
+      mainHeight
     }
   }
 })

@@ -60,7 +60,9 @@ export default {
         }
         const audioElement = ref();
         const createAudio = () => {
-            if(audioElement.value)return;
+            if(audioElement.value){
+                audioElement.value = null;
+            };
             audioElement.value = new Audio();
             audioElement.value.loop = 'loop';
             audioElement.value.autoplay = 'autoplay';
