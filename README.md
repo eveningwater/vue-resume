@@ -1,4 +1,5 @@
 # resume
+[vue3.0版](https://www.eveningwater.com/vue-resume/vue3.0/)
 [新版在线预览](https://www.eveningwater.com/vue-resume/new/)
 [旧版在线预览](https://www.eveningwater.com/vue-resume/old/)
 

@@ -1,4 +1,4 @@
-const fullMarkdown = `* 夕水(eveningwater),
+const fullMarkdown:string = `* 夕水(eveningwater),
 * 目前在成都工作
 -----
 技能

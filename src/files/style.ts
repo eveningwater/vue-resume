@@ -1,4 +1,4 @@
-const fullStyle = [`/*
+const fullStyle:string [] = [`/*
 * 大家好,我叫夕水(eveningwater),
 * 是一个web前端开发工程师,
 * 这是一个我为自己而写的简历.
