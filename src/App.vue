@@ -3,7 +3,7 @@
     @on-update-speed="onUpdateSpeed"
     @on-show-header="onShowHeader"
   />
-  <div class="main" :style="{ height: mainHeight }">
+  <div class="main" :style="mainStyle">
     <StyleEditor v-model:styleCode="styleCode" ref="styleEditor" />
     <ResumeEditor
       :markdown="currentMarkdown"
@@ -52,24 +52,34 @@ export default defineComponent({
       fullStyle: fullStyle,
       currentMarkdown: "",
       fullMarkdown: me,
-      timer: 0,
+      timer: [] as number [],
       enableHtml: false,
       interVal: 50,
+      mainStyle:{}
     });
     const isShowHeader = ref(false);
-    const mainHeight = ref("calc(100% - 20px)");
     let isMobile =
       navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i) ||
       window.innerWidth < 666;
     const setMainHeight = () => {
       if (isMobile) {
-        mainHeight.value = isShowHeader.value
-          ? "calc(100% - 100px)"
-          : "calc(100% - 60px)";
+        state.mainStyle = isShowHeader.value
+          ? {
+            height:"calc(100% - 100px)",
+            'margin-bottom':"60px"
+          }
+          : {
+            height:"calc(100% - 60px)",
+            'margin-bottom':"60px"
+          };
       } else {
-        mainHeight.value = isShowHeader.value
-          ? "calc(100% - 70px)"
-          : "calc(100% - 30px)";
+        state.mainStyle  = isShowHeader.value
+          ? {
+            height:"calc(100% - 70px)"
+          }
+          : {
+            height:"calc(100% - 30px)"
+          };
       }
     };
     const setMobileOrWeb = () => {
@@ -84,10 +94,15 @@ export default defineComponent({
     const loadMobileStyle = () => {
       isMobile = window.innerWidth < 666;
       setMobileOrWeb();
-      state.styleCode = state.currentMarkdown = "";
-      state.enableHtml = false;
-      makeResume();
+      nextTick(() => {
+        state.styleCode = state.currentMarkdown = "";
+        state.enableHtml = false;
+        makeResume();
+      })
     };
+    const mobileGoBottom = (value:number) => {
+        document.body.scrollTop = document.documentElement.scrollTop = value;
+    }
     const writeStyle = (n: number) => {
       return new Promise((resolve: Function) => {
         let showStyle = () => {
@@ -108,9 +123,19 @@ export default defineComponent({
             ) {
               nextTick(() => {
                 (instance?.refs.styleEditor as DefineComponent).goBottom();
+                if(isMobile && !state.enableHtml){
+                  mobileGoBottom(10000);
+                }else{
+                  if(instance?.refs.resumeEditor && instance?.refs.styleEditor){
+                    const resumeRect = (instance?.refs.resumeEditor as DefineComponent).$el.getBoundingClientRect();
+                    const styleEditorHeight = (instance?.refs.styleEditor as DefineComponent).$el.offsetHeight;
+                    const currentScrollTop = Math.abs(styleEditorHeight - parseInt(resumeRect.width) + resumeRect.top);
+                    mobileGoBottom(currentScrollTop);
+                  }
+                }
               });
             }
-            state.timer = setTimeout(showStyle, state.interVal);
+            state.timer.push(setTimeout(showStyle, state.interVal));
           } else {
             resolve();
           }
@@ -132,9 +157,12 @@ export default defineComponent({
             if (lastChar === "\n" && instance?.refs.resumeEditor) {
               nextTick(() => {
                 (instance?.refs.resumeEditor as DefineComponent).goBottom();
+                if(isMobile && !state.enableHtml){
+                  mobileGoBottom(10000);
+                }
               });
             }
-            state.timer = setTimeout(showResume, state.interVal);
+            state.timer.push(setTimeout(showResume, state.interVal));
           } else {
             resolve();
           }
@@ -145,6 +173,14 @@ export default defineComponent({
     const writeShowHTML = () => {
       return new Promise((resolve: Function) => {
         state.enableHtml = true;
+        if(isMobile){
+          if(instance?.refs.resumeEditor && instance?.refs.styleEditor){
+              const resumeRect = (instance?.refs.resumeEditor as DefineComponent).$el.getBoundingClientRect();
+              const styleEditorHeight = (instance?.refs.styleEditor as DefineComponent).$el.offsetHeight;
+              const currentScrollTop = Math.abs(resumeRect.top - styleEditorHeight);
+              mobileGoBottom(currentScrollTop);
+          }
+        }
         resolve();
       });
     };
@@ -157,10 +193,15 @@ export default defineComponent({
       await nextTick(() => {
         if (instance?.refs.bottomNav)
           (instance?.refs.bottomNav as DefineComponent).playMusic();
+          if(isMobile){
+            mobileGoBottom(10000);
+          }
       });
     };
     const onSkipAnimation = () => {
-      if (state.timer) clearTimeout(state.timer);
+      if (state.timer.length){
+        state.timer.forEach(timer => clearTimeout(timer));
+      };
       state.fullStyle.map((f) => (state.styleCode += f));
       state.currentMarkdown = fullMarkdown;
       state.enableHtml = true;
@@ -177,8 +218,8 @@ export default defineComponent({
       });
     };
     const onPauseAnimation = (paused) => {
-      if (state.timer && paused) {
-        clearTimeout(state.timer);
+      if (state.timer.length && paused) {
+        state.timer.forEach(timer => clearTimeout(timer));
       } else {
         makeResume();
       }
@@ -201,8 +242,7 @@ export default defineComponent({
       onPauseAnimation,
       onUpdateSpeed,
       onShowHeader,
-      isShowHeader,
-      mainHeight,
+      isShowHeader
     };
   },
 });
