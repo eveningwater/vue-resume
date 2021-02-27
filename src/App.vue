@@ -61,7 +61,7 @@ export default defineComponent({
     let isMobile =
       navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i) ||
       window.innerWidth < 666;
-    const setMainHeight = () => {
+    const setMainStyle = () => {
       if (isMobile) {
         state.mainStyle = isShowHeader.value
           ? {
@@ -88,7 +88,7 @@ export default defineComponent({
       } else {
         state.fullStyle = fullStyle;
       }
-      setMainHeight();
+      setMainStyle();
     };
     const instance = getCurrentInstance();
     const loadMobileStyle = () => {
@@ -102,6 +102,11 @@ export default defineComponent({
     };
     const mobileGoBottom = (value:number) => {
         document.body.scrollTop = document.documentElement.scrollTop = value;
+    }
+    const getCurrentScrollTop = (bool:boolean) => {
+      const resumeRect = (instance?.refs.resumeEditor as DefineComponent).$el.getBoundingClientRect();
+      const styleEditorHeight = (instance?.refs.styleEditor as DefineComponent).$el.offsetHeight;
+      return bool ? Math.abs(resumeRect.top - styleEditorHeight) : Math.abs(styleEditorHeight - parseInt(resumeRect.width) + resumeRect.top);
     }
     const writeStyle = (n: number) => {
       return new Promise((resolve: Function) => {
@@ -127,10 +132,7 @@ export default defineComponent({
                   mobileGoBottom(10000);
                 }else{
                   if(instance?.refs.resumeEditor && instance?.refs.styleEditor){
-                    const resumeRect = (instance?.refs.resumeEditor as DefineComponent).$el.getBoundingClientRect();
-                    const styleEditorHeight = (instance?.refs.styleEditor as DefineComponent).$el.offsetHeight;
-                    const currentScrollTop = Math.abs(styleEditorHeight - parseInt(resumeRect.width) + resumeRect.top);
-                    mobileGoBottom(currentScrollTop);
+                    mobileGoBottom(getCurrentScrollTop(false));
                   }
                 }
               });
@@ -175,10 +177,7 @@ export default defineComponent({
         state.enableHtml = true;
         if(isMobile){
           if(instance?.refs.resumeEditor && instance?.refs.styleEditor){
-              const resumeRect = (instance?.refs.resumeEditor as DefineComponent).$el.getBoundingClientRect();
-              const styleEditorHeight = (instance?.refs.styleEditor as DefineComponent).$el.offsetHeight;
-              const currentScrollTop = Math.abs(resumeRect.top - styleEditorHeight);
-              mobileGoBottom(currentScrollTop);
+              mobileGoBottom(getCurrentScrollTop(true));
           }
         }
         resolve();
@@ -196,12 +195,15 @@ export default defineComponent({
           if(isMobile){
             mobileGoBottom(10000);
           }
+          state.timer = [];
       });
     };
     const onSkipAnimation = () => {
       if (state.timer.length){
         state.timer.forEach(timer => clearTimeout(timer));
+        state.timer = [];
       };
+      state.styleCode = "";
       state.fullStyle.map((f) => (state.styleCode += f));
       state.currentMarkdown = fullMarkdown;
       state.enableHtml = true;
@@ -215,6 +217,9 @@ export default defineComponent({
         if (instance?.refs.bottomNav) {
           (instance?.refs.bottomNav as DefineComponent).playMusic();
         }
+        if(isMobile){
+          mobileGoBottom(10000);
+        }
       });
     };
     const onPauseAnimation = (paused) => {
@@ -225,11 +230,15 @@ export default defineComponent({
       }
     };
     const onUpdateSpeed = (speed) => {
+      // 动画已完成，无需修改
+      if(!state.timer.length){
+        return;
+      }
       state.interVal = speed.value;
     };
     const onShowHeader = (bool) => {
       isShowHeader.value = bool.value;
-      setMainHeight();
+      setMainStyle();
     };
     onMounted(() => {
       window.addEventListener("resize", debounce(loadMobileStyle, 100), false);

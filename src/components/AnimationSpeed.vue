@@ -9,7 +9,7 @@
    <div class="down" @click="showHeader" :style="{ top:isDown ? '47px' : '10px'}"></div>
 </template>
 
-<script>
+<script lang="ts">
 import { ref } from 'vue'
 export default {
     name:"AnimationSpeed",

@@ -14,7 +14,7 @@ body,html{
 * 过渡效果只是为了让动画更顺畅一点罢了.
 * 先改变背景颜色,毕竟白色背景太单调了不是吗?
 */
-html,html{
+body,html{
 	background-color:#abb1b1;
 }
 /*
@@ -33,7 +33,7 @@ body,html{
 	width:100%;
 	height:50%;
 	min-height:35vh;
-	background:#202120;
+	background:#032331;
 	border:1px solid #f2f2f2;
 }
 /*
@@ -80,7 +80,7 @@ body,html{
 	width:100%;
 	height:50%;
 	min-height:35vh;
-	background-color:#202120;
+	background-color:#032331;
 }
 /*
 * 编辑器写好了,开始往里面写内容,我开始介绍我自己了......
@@ -100,7 +100,7 @@ body,html{
 * 再添加点样式.
 */
 .resumeEditor{
-	padding:2em;
+	padding:10px;
 }
 .resumeEditor h2{
 	display:inline-block;
@@ -131,11 +131,11 @@ body,html{
 */
 .resumeEditor a{
 	text-decoration:none;
-	color:#bf862d;
+	color:#2396ef;
 }
 .resumeEditor a:hover,
 .resumeEditor a:active{
-	color:#2396ff;
+	color:#e6a122;
 }
 /*
 * 动画加载完成了.
