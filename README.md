@@ -1,6 +1,4 @@
-# resume
-[新版在线预览](https://www.eveningwater.com/vue-resume/new/)
-[旧版在线预览](https://www.eveningwater.com/vue-resume/old/)
+# vue-resume
 
 ## Project setup
 ```
@@ -15,11 +13,6 @@ npm run serve
 ### Compiles and minifies for production
 ```
 npm run build
-```
-
-### Run your tests
-```
-npm run test
 ```
 
 ### Lints and fixes files

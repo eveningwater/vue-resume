@@ -1,0 +1,36 @@
+#app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.main {
+    position: relative;
+}
+
+@media only screen and (max-width: 666px) {
+    body {
+        overflow: auto;
+        .header {
+            width: 100%;
+            .w-inter-btn {
+                margin-left: 2px;
+            }
+        }
+        .main {
+            padding:0 15px;
+            .resumeEditor {
+                margin:0.5em 1em 0.5em .1em;
+            }
+        }
+        #bottom {
+            height: 60px;
+            p {
+                float: none;
+            }
+        }
+        .resumeEditor {
+            font-size: 12px;
+        }
+    }
+}
