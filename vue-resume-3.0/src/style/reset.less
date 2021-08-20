@@ -1,0 +1,161 @@
+* {
+    margin: 0;
+    padding: 0;
+    user-select: none;
+
+    &::after,
+    &,
+    &::before {
+        box-sizing: border-box;
+    }
+}
+
+.resumeEditor,
+.styleEditor {
+    overflow: auto;
+    padding: 0.5em;
+    margin: 0.5em;
+}
+
+.styleEditor {
+    outline: none;
+    white-space: pre-wrap;
+    font-size: 14px;
+}
+
+.styleEditor:focus {
+    box-shadow: 0 0 30px #fff;
+}
+
+.resumeEditor a {
+    transition: color 0.3s linear;
+}
+
+#music {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    background: url('../assets/musicIcon.svg') no-repeat center/cover;
+    margin-left: 15px;
+    display: none;
+}
+
+audio {
+    opacity: 0;
+}
+
+.code {
+    display: none;
+}
+
+.rotate {
+    animation: rotate 5s linear infinite;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.header {
+    width: 370px;
+    background-color: #fcfdfd;
+    padding: 5px;
+    margin: auto;
+    position: relative;
+    border-radius: 4px;
+    .w-inter-text {
+        color: #535353;
+    }    
+    .w-inter-btn {
+        outline: none;
+        padding: 4px 8px;
+        display: inline-block;
+        color: #fff;
+        text-align: center;
+        background-color: #409eff;
+        border-radius: 15px;
+        border: 1px solid #409eff;
+        cursor: pointer;
+        margin-left: 10px;
+    
+        &:hover,
+        &:active {
+            background-color: #66b1ff;
+            border-color: #66b1ff;
+        }
+    }
+    .w-inter-input {
+        outline: none;
+        padding: 0 10px;
+        border-radius: 5px;
+        border: 1px solid #cac4c4;
+        color: #535353;
+        font-size: 14px;
+        text-align: center;
+        min-width: 140px;
+        line-height: 20px;
+    }
+}
+
+.down {
+    position: absolute;
+    border-width: 10px;
+    border-style: solid;
+    left: 50%;
+    top: 10px;
+    z-index: 999;
+    transform: translate(0%, -50%);
+    cursor: pointer;
+    border-color: #2396ef transparent transparent transparent;
+    transition: border-color 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.down:hover,
+.down:active {
+    border-color: #4086ef transparent transparent transparent;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+    transition: all 1s;
+}
+
+.slide-enter,
+.slide-leave-to {
+    transform: translateY(20px);
+}
+
+.main {
+    width: 100%;
+    position: relative;
+}
+
+#bottom {
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    height: 20px;
+
+    p {
+        float: right;
+    }
+
+    a {
+        text-decoration: none;
+        color: rgba(88, 87, 87,1);
+        cursor: pointer;
+        margin-left: 5px;
+
+        &:hover,
+        &:active {
+            color: #2396ef;
+        }
+    }
+}
