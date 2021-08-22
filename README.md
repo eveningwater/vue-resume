@@ -1,6 +1,24 @@
-# 不同版本的resume实现
+# demo
 
-[old](http://www.eveningwater.com/vue-resume/old/)
-[new](http://www.eveningwater.com/vue-resume/new/)
-[vue3.0](http://www.eveningwater.com/vue-resume/vue3.0/)
-[vue3.2](http://www.eveningwater.com/vue-resume/vue3.2/)
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
